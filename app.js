@@ -10,7 +10,7 @@ const cartRouter = require('./routes/cart.routes');
 const mailerRouter = require('./routes/emails.routes');
 const categoriesRouter = require('./routes/categories.routes');
 const productsRouter = require('./routes/products.routes');
-const ordersRouter = require('./routes/orders.routes');
+const paymentsRouter = require('./routes/payment.routes');
 const cors = require('cors');
 const corsOptions = require('./config/CorsOptions');
 const originCredentials = require('./middlewares/originCredentials');
@@ -37,6 +37,7 @@ app.use('/categories', categoriesRouter);
 app.use('/orders', ordersRouter);
 app.use('/products', productsRouter);
 app.use('/mailer', mailerRouter);
+app.use('/payments', paymentsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

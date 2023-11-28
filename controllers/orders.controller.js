@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 // Get all orders
 const getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find({}).populate('user items.product');
+    const orders = await Order.find({}).populate('user products.product');
     return res.status(200).json({
       success: true,
       message: 'Successfully retrieved all orders',

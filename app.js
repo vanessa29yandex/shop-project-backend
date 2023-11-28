@@ -13,7 +13,7 @@ const productsRouter = require('./routes/products.routes');
 const ordersRouter = require('./routes/orders.routes')
 const paymentsRouter = require('./routes/payment.routes');
 const cors = require('cors');
-const corsOptions = require('./config/CorsOptions');
+const corsOptions = require('./config/corsOptions');
 const originCredentials = require('./middlewares/originCredentials');
 
 const app = express();

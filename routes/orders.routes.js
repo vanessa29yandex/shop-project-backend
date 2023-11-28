@@ -4,7 +4,7 @@ const {getAllOrders, getOrderById, createOrder, updateOrder} = require('../contr
 
 router.get('/', getAllOrders);
 router.get('/:id', getOrderById);
-router.post('/', createOrder);
+router.post('/customer-order', createOrder);
 router.put('/:id', updateOrder);
 
 module.exports = router;

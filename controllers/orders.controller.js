@@ -20,30 +20,29 @@ const getAllOrders = async (req, res) => {
 
 // Create a new order
 const createOrder = async (req, res) => {
-  const { user, items, totalAmount } = req.body;
-
   try {
-    const newOrder = await Order.create({
+    const { user, customer_details, payment_details, products } = req.body;
+
+    const order = await Order.create({
       user,
-      items,
-      totalAmount,
+      customer_details,
+      payment_details,
+      products,
     });
+    // mail user
 
-    if (!newOrder) {
-      return res.status(400).json({
-        message: 'Could not create a new order',
-      });
-    }
+    const mailContent = `
+    <html>
+      <body>
+        ....
+      </body>
+    </html>`;
 
-    return res.status(201).json({
-      message: 'Created order successfully',
-      data: newOrder,
-    });
+    return res.status(200).send({
+      success: true, message: 'Succeeded in creating order for the user', order_number: order.order_number
+    })
   } catch (error) {
-    return res.status(500).json({
-      message: 'Error in creating a new order',
-      error: error.message,
-    });
+    next(error)
   }
 };
 

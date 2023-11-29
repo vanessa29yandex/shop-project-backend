@@ -34,7 +34,7 @@ const createPayment = async (req, res, next) => {
     payment_method: {
       type: 'il_visa_card',
       fields: {
-        number: creditNumber,
+        number: creditNumber || '4111111111111111',
         expiration_month,
         expiration_year,
         name: userDetails.user_name,

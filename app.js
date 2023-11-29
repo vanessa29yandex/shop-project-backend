@@ -3,6 +3,11 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
+
+const corsOptions = require('./config/corsOptions');
+const originCredentials = require('./middlewares/originCredentials');
+
 const refreshRouter = require ('./routes/refresh.routes');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users.routes');
@@ -12,9 +17,6 @@ const categoriesRouter = require('./routes/categories.routes');
 const productsRouter = require('./routes/products.routes');
 const ordersRouter = require('./routes/orders.routes')
 const paymentsRouter = require('./routes/payment.routes');
-const cors = require('cors');
-const corsOptions = require('./config/corsOptions');
-const originCredentials = require('./middlewares/originCredentials');
 
 const app = express();
 

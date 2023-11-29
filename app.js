@@ -16,7 +16,7 @@ const mailerRouter = require('./routes/emails.routes');
 const categoriesRouter = require('./routes/categories.routes');
 const productsRouter = require('./routes/products.routes');
 const ordersRouter = require('./routes/orders.routes')
-const paymentsRouter = require('./routes/payment.routes');
+const paymentsRouter = require('./routes/payments.routes');
 
 const app = express();
 

@@ -23,7 +23,7 @@ const createPayment = async (req, res, next) => {
   const expiration_year = expDate.slice(-2);
 
   const {
-    user_address: { city, street, building, apartment },
+    customer_address: { city, street, building, apartment },
   } = userDetails;
 
   const address = `${street} ${building}/${apartment}, ${city}`;

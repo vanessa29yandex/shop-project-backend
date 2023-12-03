@@ -21,7 +21,7 @@ const getAllOrders = async (req, res) => {
 // Create a new order
 const createOrder = async (req, res) => {
   try {
-    const { user, customer_details, payment_details, products } = req.body;
+    const { userId: user, customer_details, payment_details, products } = req.body;
 
     const order = await Order.create({
       user,

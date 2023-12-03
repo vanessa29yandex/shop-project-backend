@@ -23,7 +23,7 @@ const createPayment = async (req, res, next) => {
   const expiration_year = expDate.slice(-2);
 
   const {
-    customer_address: { city, street, building, apartment },
+    user_address: { city, street, building, apartment },
   } = userDetails;
 
   const address = `${street} ${building}/${apartment}, ${city}`;
@@ -60,7 +60,7 @@ const createPayment = async (req, res, next) => {
     const last_digits = creditNumber.slice(-4);
 
     const order = await Order.create({
-      user,
+      user: userDetails._id,
       customer_details,
       payment_details: {
         transaction_number: paymentId.split('_')[1],

@@ -24,6 +24,18 @@ const createPayment = async (req, res, next) => {
 
   const address = `${street} ${building}/${apartment}, ${city}`;
 
+  try {
+    const order = await Order.create({
+      user,
+      customer_details,
+      payment_details:{
+        transaction_number: '1234567890' + Date.now(),
+        terminal_number: '1234567890',
+        last_digits,
+      },
+      products,
+    });
+
   const requestBody = {
     amount: cartTotal,
     currency: "USD",
@@ -42,16 +54,25 @@ const createPayment = async (req, res, next) => {
       },
     },
     error_payment_url: `${process.env.API_URL}/rejected-payment`,
-    complete_payment_url: `${process.env.API_URL}/success-payment`,
+    complete_payment_url: `${process.env.API_URL}/success-payment?tpken=${order._id}`,
     capture: true,
   };
 
-  try {
     const response = await makeRequest("POST", "/v1/payments", requestBody);
 
     // console.log(response)
 
-    const { id: paymentId, redirect_url: redirectUrl } = response.body.data;
+    const { redirect_url: redirectUrl } = response.body.data;
+
+    res.send({
+      paymentStatus: {
+        redirectUrl,
+        token:order._id,
+      },
+    });
+  } catch (error) {
+
+  }
 
     const transaction_number = paymentId.split("_")[1];
     console.log(transaction_number)
